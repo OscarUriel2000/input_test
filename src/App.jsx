@@ -1,19 +1,38 @@
 import { useState } from "react";
 function App() {
-  const [InputValue, setInputValue] = useState("Hola")
-  const handleInputClick = () => {
-    setInputValue(e.target.value)
-    console.log (e.target.value);
+  const [inputValue, setInputValue] = useState({
+    input1: "",
+    input2: "",
+    });
+  const handleInputClick = (e) => {
+    setInputValue({
+      ...inputValue,
+      [e.target.name]: e.target.value,
+    });
   }
   return (
     <div style= {{textALign: "center"}} >
       <h1>Input Test</h1>
       <hr />
+      <label htmlFor="int1">Input1</label>
       <input
+      name="input1"
       onChange={(e) => handleInputClick(e)}
       type="text"
-      value={InputValue}
+      value={inputValue.input1}
       />
+      <br/>
+      <label>
+        Input2
+      <input
+      className="mt-2"
+      name="input2"
+      onChange={(e) => handleInputClick(e)}
+      placeholder="Este es el input 2"
+      type="text"
+      value={inputValue.input2}
+      />
+      </label>
     </div>
   ) 
 }
